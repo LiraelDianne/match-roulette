@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
-from .models import User, UserManager
+from ..login_reg.models import User, UserManager
 from django.core.urlresolvers import reverse
 import copy
 
@@ -20,11 +20,11 @@ def login(request):
             request.session['alias'] = user_tuple[1].alias
             request.session['email'] = user_tuple[1].email
             request.session['error'] = {"blank" : "", "email" : "", "first_name" : "", "last_name" : "", "alias" : "", "password" : "", "confirm_password" : "", "invalid" : ""}
-            return redirect(reverse('rl_home'))
+            return redirect(reverse('da_home'))
         else:
             request.session['errorLogin'] = user_tuple[1]
             request.session['error'] = {"blank" : "", "email" : "", "first_name" : "", "last_name" : "", "alias" : "", "password" : "", "confirm_password" : "", "invalid" : ""}
-            return redirect (reverse('rl_index'))
+            return redirect (reverse('da_index'))
 
 def register(request):
     if request.method == 'POST':
@@ -39,7 +39,7 @@ def register(request):
         else:
             request.session['errorLogin'] = {"login" : ""}
             request.session['error'] = user_tuple[1]
-            return redirect (reverse('rl_index'))
+            return redirect (reverse('da_index'))
 
 def home(request):
     users = User.objects.all()
@@ -55,4 +55,12 @@ def reset(request):
     del request.session['name']
     del request.session['errorLogin']
     del request.session['error']
-    return redirect (reverse('rl_index'))
+    return redirect (reverse('da_index'))
+def profilePage(request, profile_name):
+    #this page loads the profile information and then compiles the resulting page...
+    #ALSO!  It determines if the user should be shown their own (editable) page or a static page of another users
+    pass
+
+def loggedIn(request):
+    #checks if the user is logged into a valid account
+    #returns boolean
