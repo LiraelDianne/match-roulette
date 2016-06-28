@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="{% static 'js/main.js' %}"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="topBar">
+        <div class="topText"><div class="vcenter">Welcome, {{ user.first_name }}!</div></div>
+        <form class="" action="{% url 'rl_reset' %}" method="post">{% csrf_token %}
+          <input type='submit' value='Logout'>
+        </form>
+        <a href="{% url 'da_profile' user.id %}">Profile</a>
+
+      </div>
+
+      <p>Main page with chat button, questions sidebar, saved/favorited bar, </p>
+
+    </div>
+  </body>
+</html>

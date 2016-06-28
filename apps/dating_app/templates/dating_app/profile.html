@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="{% static 'js/main.js' %}"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="topBar">
+        <div class="topText"><div class="vcenter">Welcome, {{ user.first_name }}!</div></div>
+        <form class="" action="{% url 'rl_reset' %}" method="post">{% csrf_token %}
+          <input type='submit' value='Logout'>
+        </form>
+        {% if user.complete %}
+        <a href="{% url 'da_home' %}">Home</a>
+        {% endif %}
+      </div>
+      <p>Display User profile info with a form to alter/finish it (including gender, orientation, and description</p>
+      <p>Gender should be a dropdown of the possible genders</p>
+      <p>Orientation should be checkboxes looping through the possible genders - not sure what data type this is going to return</p>
+    </div>
+  </body>
+</html>
