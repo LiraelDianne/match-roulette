@@ -121,8 +121,7 @@ class User(models.Model):
     userManager = UserManager()
     objects = models.Manager()
 
-    # gender = models.ForeignKey(Gender, default='1')
-    # have to add after there are genders
+    gender = models.ForeignKey(Gender, default='1')
     orientation = models.ManyToManyField(Gender, related_name='talks_to')
     description = models.CharField(max_length=500, default="")
     favorite = models.ManyToManyField('self', related_name='Favorites')
