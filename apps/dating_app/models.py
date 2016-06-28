@@ -5,23 +5,19 @@ from ..login_reg.models import User
 
 from ..login_reg.models import Gender, User
 
-class Option(models.Model):
-    content = models.CharField(max_length=300)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
 class Question(models.Model):
     question = models.CharField(max_length=300)
-    option_a = models.ForeignKey(Option, related_name='opta')
-    option_b = models.ForeignKey(Option, related_name='optb')
-    option_c = models.ForeignKey(Option, related_name='optc')
-    option_d = models.ForeignKey(Option, related_name='optd')
+    option_a = models.CharField(max_length=300)
+    option_b = models.CharField(max_length=300)
+    option_c = models.CharField(max_length=300)
+    option_d = models.CharField(max_length=300)
+    image = models.FilePathField(path="/static/images", default='')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
 class UserAnswer(models.Model):
     answerer = models.ForeignKey(User)
     question = models.ForeignKey(Question)
-    answer = models.ForeignKey(Option)
+    answer = models.CharField(max_length=100)
     importance = models.IntegerField()
 

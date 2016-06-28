@@ -1,0 +1,97 @@
+[
+  {
+    "model": "login_reg.gender",
+    "pk": 1,
+    "fields": {
+      "name": ""
+    }
+  },
+  {
+    "model": "login_reg.gender",
+    "pk": 2,
+    "fields": {
+      "name": "Male"
+    }
+  },
+  {
+    "model": "login_reg.gender",
+    "pk": 3,
+    "fields": {
+      "name": "Female"
+    }
+  },
+  {
+    "model": "login_reg.gender",
+    "pk": 4,
+    "fields": {
+      "name": "Non-binary"
+    }
+  },
+
+  {
+    "model": "dating_app.question",
+    "pk": 1,
+    "fields": {
+      "question": "Your flight got delayed at the airport! What would you do?",
+      "option_a": "Read your favourite novels",
+      "option_b": "Hangout at the bar/restaurant nearby",
+      "option_c": "Watch some Netflix",
+      "option_d": "I have my own jet",
+      "created_at": "2016-06-28",
+      "updated_at": "2016-06-28"
+    }
+  },
+  {
+    "model": "dating_app.question",
+    "pk": 2,
+    "fields": {
+      "question": "How many triangles are in this picture?",
+      "option_a": "10",
+      "option_b": "16",
+      "option_c": "25",
+      "option_d": "26",
+      "image": "triangles.png",
+      "created_at": "2016-06-28",
+      "updated_at": "2016-06-28"
+    }
+  },
+  {
+    "model": "dating_app.question",
+    "pk": 3,
+    "fields": {
+      "question": "Your friends invited you to a party! What would you bring?",
+      "option_a": "Lots of food",
+      "option_b": "Lots of booze",
+      "option_c": "Your awesome attitude",
+      "option_d": "Stay home and watch Netflix",
+      "created_at": "2016-06-28",
+      "updated_at": "2016-06-28"
+    }
+  },
+  {
+    "model": "dating_app.question",
+    "pk": 4,
+    "fields": {
+      "question": "You had a rough day at work and while driving home a $100 bill just dropped on your windshield! What would you do?",
+      "option_a": "Treat yourself for a nice dinner",
+      "option_b": "Call up your friends for a night out!",
+      "option_c": "Take your family out for a treat",
+      "option_d": "Donate to a charity",
+      "created_at": "2016-06-28",
+      "updated_at": "2016-06-28"
+    }
+  },
+  {
+    "model": "dating_app.question",
+    "pk": 5,
+    "fields": {
+      "question": "It's Valentine's day. What's your surprise for your significant other?",
+      "option_a": "Awesome trip to Hawaii",
+      "option_b": "Expensive gifts",
+      "option_c": "A surprise dinner you made yourself",
+      "option_d": "Movie and cuddling",
+      "created_at": "2016-06-28",
+      "updated_at": "2016-06-28"
+    }
+  }
+]
