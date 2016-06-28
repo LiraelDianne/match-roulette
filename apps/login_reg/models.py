@@ -4,6 +4,13 @@ from django.db import models
 import re
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+.[a-zA-Z]*$')
+
+
+
+class Gender(models.Model):
+    name = models.CharField(max_length=50)
+
+
 class UserManager(models.Manager):
     def login(self, email, password):
         try:
@@ -54,3 +61,11 @@ class User(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     userManager = UserManager()
     objects = models.Manager()
+
+    gender = models.ForeignKey(Gender)
+    orientation = models.ManyToManyField(Gender, related_name='talks_to')
+    description = models.CharField(max_length=500)
+    favorite = models.ManyToManyField('self', related_name='Favorites')
+    blocked = models.ManyToManyField('self', related_name='Blocked')
+
+
