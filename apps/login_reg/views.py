@@ -20,7 +20,7 @@ def login(request):
             request.session['alias'] = user_tuple[1].alias
             request.session['email'] = user_tuple[1].email
             request.session['error'] = {"blank" : "", "email" : "", "first_name" : "", "last_name" : "", "alias" : "", "password" : "", "confirm_password" : "", "invalid" : ""}
-            return redirect(reverse('rl_home'))
+            return redirect(reverse('da_home'))
         else:
             request.session['errorLogin'] = user_tuple[1]
             request.session['error'] = {"blank" : "", "email" : "", "first_name" : "", "last_name" : "", "alias" : "", "password" : "", "confirm_password" : "", "invalid" : ""}
@@ -35,24 +35,12 @@ def register(request):
             request.session['name'] = user_tuple[1].first_name
             request.session['alias'] = user_tuple[1].alias
             request.session['error'] = {"blank" : "", "email" : "", "first_name" : "", "last_name" : "", "alias" : "", "password" : "", "confirm_password" : "", "invalid" : ""}
-            return redirect(reverse('da_home'))
+            return redirect(reverse('da_profile', kwargs={'id':user_tuple[1].id}))
         else:
             request.session['errorLogin'] = {"login" : ""}
             request.session['error'] = user_tuple[1]
             return redirect (reverse('rl_index'))
 
-def home(request):
-    users = User.objects.all()
-    currentuser=User.objects.get(id=request.session['id'])
-    context = {
-        'users': users,
-        'name': request.session['name']
-    }
-    return render(request, "login_reg/main.html", context)
-
 def reset(request):
-    del request.session['email']
-    del request.session['name']
-    del request.session['errorLogin']
-    del request.session['error']
+    request.session.clear()
     return redirect (reverse('rl_index'))
