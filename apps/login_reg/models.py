@@ -54,13 +54,9 @@ class UserManager(models.Manager):
         first_name = kwargs['first_name']
         last_name = kwargs['last_name']
         alias = kwargs['alias']
-        password = kwargs['password']
-        confirm_password = kwargs['confirm_password']
-        email = kwargs['email']
         gender = kwargs['gender']
-        orientation = kwargs['orientation'] #what data type does a checkbox return? Some kind of list?
+        orientation = kwargs['orientation'] #returns a list
         description = kwargs['description']
-        #logic for email, password, etc like registration
         errors = {}
         if first_name == "" or last_name == "" or alias == "" or email == "" or password == "" or confirm_password == "":
             errors['blank'] = "Please fill-in name, alias, email, and password fields"
@@ -70,25 +66,11 @@ class UserManager(models.Manager):
             errors['last_name'] = "Last Name is too short"
         if len(alias) < 2:
             errors['alias'] = "Alias is too short"
-        if len(password) < 3:
-            errors['password'] = "Password is too short"
-        if password != confirm_password:
-            errors['confirm_password'] = "Passwords must match"
-        try:
-            user = self.get(email__iexact=email)
-            errors['invalid'] = "This email is already in use! (probably not a great thing to tell hackers)"
-        except:
-            pass
-
-        if not EMAIL_REGEX.match(email):
-            errors['email'] = "Please enter a valid email"
-        #awkward because it re-salts the password every time - todo: put in different form?
-        password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
         #check if a gender is selected
         if not gender:
             errors['gender'] = "Please select a gender"
-        #todo: check if at least one orientation box has been checked
-
+        if not orientation:
+            errors['orientation'] = "Please tell us who you're interested in!"
         if errors:
             return (False, errors)
 
@@ -98,15 +80,16 @@ class UserManager(models.Manager):
             "first_name" : "",
             "last_name" : "",
             "alias" : "",
-            "password" : "",
-            "confirm_password" : "",
-            "invalid" : "",
             "gender": "",
             "orientation": "",
             }
         #todo: finish updating user
         user = self.get(email=email)
-        user.update()
+        user.update(first_name=first_name, last_name=last_name, alias=alias,
+            gender=gender)
+        for gender_id in orientation:
+            gender = Gender.objects.get(id=gender_id)
+            user.orientation.add(gender)
         return (True, self.get(email=email))
 
 class User(models.Model):

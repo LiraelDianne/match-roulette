@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
-from .models import User, UserManager
+from .models import User, UserManager, Gender
 from django.core.urlresolvers import reverse
 import copy
 
