@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
-from .models import User, UserManager
+from .models import User, UserManager, Gender
 from django.core.urlresolvers import reverse
 import copy
 
@@ -20,7 +20,6 @@ def login(request):
             request.session['alias'] = user_tuple[1].alias
             request.session['email'] = user_tuple[1].email
             request.session['error'] = {"blank" : "", "email" : "", "first_name" : "", "last_name" : "", "alias" : "", "password" : "", "confirm_password" : "", "invalid" : ""}
-            request.session.set_expiry(300)
             return redirect(reverse('da_home'))
         else:
             request.session['errorLogin'] = user_tuple[1]
@@ -36,7 +35,6 @@ def register(request):
             request.session['name'] = user_tuple[1].first_name
             request.session['alias'] = user_tuple[1].alias
             request.session['error'] = {"blank" : "", "email" : "", "first_name" : "", "last_name" : "", "alias" : "", "password" : "", "confirm_password" : "", "invalid" : ""}
-            request.session.set_expiry(300)
             return redirect(reverse('da_profile', kwargs={'id':user_tuple[1].id}))
         else:
             request.session['errorLogin'] = {"login" : ""}
