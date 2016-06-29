@@ -1,5 +1,6 @@
 * {
   margin: auto;
+
 }
 .box {
   width: 400px;
@@ -115,14 +116,17 @@ form {
 .main_sidebar {
   display: inline-block;
   height: 200px;
-  width: 300px;
-  margin: 10px;
+  width: 350px;
+  margin-left: 5px;
   border: 1px solid #bab280;
+  vertical-align: top;
+  margin-top: 15px;
+
 }
 
 .fav_user {
   height: 65px;
-  width: 297px;
+  width: 300px;
   border: 1px dotted #bab280;
 
 }

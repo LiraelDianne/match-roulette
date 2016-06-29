@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    {% load staticfiles %}
-    <link rel="stylesheet" href="{% static 'css/da_styles.css' %}">
-    <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
-    <script src="{% static 'js/main.js' %}"></script>
-    <script src="{% static 'js/jquery-3.0.0.min.js' %}"></script>
-    <script>
-      $(document).ready(function(){
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  {% load staticfiles %}
+  <link rel="stylesheet" href="{% static 'css/da_styles.css' %}">
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+  <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'js/jquery-3.0.0.min.js' %}"></script>
+  <script>
+    $(document).ready(function(){
 
         //This is the code that fetches a button click
         //(the '#' in the selector notes an 'id' not class)
@@ -32,7 +32,7 @@
         <a href="{% url 'da_profile' user.id %}">Profile</a>
       </div>
       <form action="{% url 'da_question' user.id %}" method="post">
-      {% csrf_token %}
+        {% csrf_token %}
         <input type="submit" value="Questionaire">
       </form>
       <div class="boxTwo">
@@ -45,19 +45,17 @@
         <p>Main page with chat button, questions sidebar, saved/favorited bar, </p>
       </div>
       <button id="test_button">TEST button</button><br>
-      <div class="main_sidebar">
-        <p>Questionaire here!</p>
-      </div>
+      <div class="main_sidebar"><p></p></div>
       <div class="main_sidebar"></div>
       <div class="main_sidebar">
-      {% if user.favourite %}
+        {% if user.favourite %}
         {% for person in user.favourite %}
         <div class="fav_user">{{ person.first_name }}</div>
         {% endfor %}
-      {% else %}
-        <div class="fav_user"><p>You have not selected your favourite HOOT!</p></div>
-      {% endif %}
+        {% else %}
+        <div class="fav_user"><p>You have not selected your favourite, HOOT ON!</p></div>
+        {% endif %}
       </div>
     </div>
   </body>
-</html>
+  </html>
