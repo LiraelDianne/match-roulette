@@ -50,7 +50,10 @@
       <div class="main_sidebar">
         {% if user.favourite %}
         {% for person in user.favourite %}
-        <div class="fav_user">{{ person.first_name }}</div>
+        <div class="fav_user">
+          <p>{{ person.first_name }} {{ person.last_name }}</p>
+          <p></p>
+        </div>
         {% endfor %}
         {% else %}
         <div class="fav_user"><p>You have not selected your favourite, HOOT ON!</p></div>

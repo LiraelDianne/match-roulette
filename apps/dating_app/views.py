@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect
 from ..login_reg.models import Gender, User
 from django.core.urlresolvers import reverse
 import copy
+from datetime import date
 
 def home(request):
     context = {
@@ -17,8 +18,10 @@ def profilePage(request, id):
     context = {
         'user': currentuser,
         'genders': Gender.objects.all(),
+
     }
     return render(request, "dating_app/profile.html", context)
+
 
 def update_profile(request):
     #submit form from profile page
