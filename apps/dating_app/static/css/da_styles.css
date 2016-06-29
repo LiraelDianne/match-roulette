@@ -111,3 +111,18 @@ form {
 .pokerlogText{
   font-size: 12px;
 }
+
+.main_sidebar {
+  display: inline-block;
+  height: 200px;
+  width: 300px;
+  margin: 10px;
+  border: 1px solid #bab280;
+}
+
+.fav_user {
+  height: 65px;
+  width: 297px;
+  border: 1px dotted #bab280;
+
+}
