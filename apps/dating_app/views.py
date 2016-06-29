@@ -26,10 +26,16 @@ def update_profile(request):
         user = User.objects.get(id=request.session['id'])
         user.userManager.update(**request.POST)
         #return to home page, or updated profile page?
-        return
+        return redirect(reverse("da_home"))
 
 def loggedIn(request):
     if 'id' in request.session:
         return redirect(reverse("da_home"))
     else:
         return redirect(reverse("rl_index"))
+
+def questionaire_page(request, id):
+    context = {
+     'user': User.objects.get(id=request.session['id'])
+    }
+    return render (request, "dating_app/questions.html", context)

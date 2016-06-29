@@ -19,7 +19,10 @@
       </div>
 
       <p>Main page with chat button, questions sidebar, saved/favorited bar, </p>
-
+      <form action="{% url 'da_question' user.id %}" method="post">
+      {% csrf_token %}
+        <input type="submit" value="Questionaire">
+      </form>
     </div>
   </body>
 </html>
