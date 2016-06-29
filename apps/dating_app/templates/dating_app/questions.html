@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  {% load staticfiles %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <script src="{% static 'js/main.js' %}"></script>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="topBar">
+      <div class="topText"><div class="vcenter">Welcome, {{ user.first_name }}!</div></div>
+      <form class="" action="{% url 'rl_reset' %}" method="post">{% csrf_token %}
+        <input type='submit' value='Logout'>
+      </form>
+      {% if user.gender %}
+      <a href="{% url 'da_home'%}">Home</a>
+      {% endif %}
+    </div>
+    <fieldset>
+      <form action="" method="post">
+      <legend>Questionaire</legend>
+      <p>Plese answer the following questions</p>
+      <label>1. Your flight got delayed, you are at the airport by yourself, what would you do?</label><br>
+        <input type="radio" name="q1" value="a">a) Read your favourite novels</input>
+        <input type="radio" name="q1" value="b">b) Hangout at the bar/restaurant near by</input>
+        <input type="radio" name="q1" value="c">c) Watch some Netflix</input>
+        <input type="radio" name="q1" value="d">d) I have my own jet</input>
+        <br>
+      <label>2. How many triangles are in this picture </label><br>
+        <img src="{% static 'image/triangles.png' %}"><br>
+        <input type="radio" name="q2" value="a">a) 10</input>
+        <input type="radio" name="q2" value="b">b) 16</input>
+        <input type="radio" name="q2" value="c">c) 25</input>
+        <input type="radio" name="q2" value="d">d) 26</input>
+        <br>
+      <label>3. Your friends invited you to a party, what would you bring?</label><br>
+        <input type="radio" name="q3" value="a">a) Lots of food</input>
+        <input type="radio" name="q3" value="b">b) Lots of boozes</input>
+        <input type="radio" name="q3" value="c">c) Your awesome attitude</input>
+        <input type="radio" name="q3" value="d">d) Stay home and watch netfilx</input>
+        <br>
+      <label>4. You had a rough day at work. On your way home, you found a $100 bill on the sidewalk , what would you do?</label><br>
+        <input type="radio" name="q4" value="a">a) Treat yourself for a nice dinner</input>
+        <input type="radio" name="q4" value="b">b) Call up your friends for a night out!</input>
+        <input type="radio" name="q4" value="c">c) Take your family out for a treat</input>
+        <input type="radio" name="q4" value="d">d) Donate all the money to a charity</input>
+        <br>
+      <label>5. It's Valentines' day, what's your surprise for your significant others?</label><br>
+        <input type="radio" name="q5" value="a">a) Awesome trip to Hawaii</input>
+        <input type="radio" name="q5" value="b">b) Expensive gifts</input>
+        <input type="radio" name="q5" value="c">c) A surprise dinner you made yourself</input>
+        <input type="radio" name="q5" value="d">d) Movie and cuddling</input>
+        <br>
+      <input type="submit" value="Submit your answers" name="">
+      </form>            
+    </fieldset>
+  </div>     
+</body>
+</html>

@@ -18,9 +18,48 @@
         <a href="{% url 'da_home' %}">Home</a>
         {% endif %}
       </div>
-      <p>Display User profile info with a form to alter/finish it (including gender, orientation, and description</p>
+
+      <!-- Start adding profile box here -->
+
+      <div> <!-- profile body box -->
+        <div style="display: inline-block;"> <!-- left side -->
+          Profile pic here!<!-- profile image here -->
+          <p>Name: {{user.first_name}}</p> 
+          <p>Age: ??? </p>
+        </div>
+        <fieldset style="display: inline-block;">
+          <legend>Profile Info</legend>
+          <label>Name:</label> {{ user.first_name }} 
+          <br>
+          <label>Last Name:</label> {{ user.last_name }}
+          <br>
+          <label>Alias Name:</label> {{ user.alias }}
+          <br>
+          <form action="{% url 'da_update' user.id %}" method="POST">
+            <label>Gender:</label>
+            <select>
+              <option name="gender" value="male">Male</option>
+              <option name="gender" value="female">Female</option>
+              <option name="gender" value="non-binary">Non-binary</option>
+            </select>
+            <br>
+            <label>Orientation:</label>
+              <input type="checkbox" name="orientation" value="male" >Male</input>
+              <input type="checkbox" name="orientation" value="female" >Female</input>
+              <input type="checkbox" name="orientation" value="non-binary" >Non-binary</input>
+            <br>
+            <label>Description:</label>
+            <br>
+            <textarea name="description"></textarea>
+            <br>
+            <input type="submit" value="Update Info">
+          </form>
+        </fieldset>
+        <!-- End adding profile box here -->
+        <p>Display User profile info with a form to alter/finish it (including gender, orientation, and description</p>
       <p>Gender should be a dropdown of the possible genders</p>
       <p>Orientation should be checkboxes looping through the possible genders - not sure what data type this is going to return</p>
+      </div>     
     </div>
   </body>
 </html>
