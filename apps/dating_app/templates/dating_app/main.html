@@ -4,25 +4,47 @@
     <meta charset="utf-8">
     <title></title>
     {% load staticfiles %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/da_styles.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
     <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/jquery-3.0.0.min.js' %}"></script>
+    <script>
+      $(document).ready(function(){
+
+        //This is the code that fetches a button click
+        //(the '#' in the selector notes an 'id' not class)
+        $('#test_button').click(function(){
+          //this passes in a get request to a route we have selected...
+          $.get("{% static 'text/test.html' %}", function(injection) {
+            $('#loaderText').html(injection);
+          });
+        });
+      });
+    </script>
   </head>
   <body>
     <div class="wrapper">
-      <div class="topBar">
+      <div class="boxOne">
         <div class="topText"><div class="vcenter">Welcome, {{ user.first_name }}!</div></div>
         <form class="" action="{% url 'rl_reset' %}" method="post">{% csrf_token %}
           <input type='submit' value='Logout'>
         </form>
         <a href="{% url 'da_profile' user.id %}">Profile</a>
-
       </div>
-
-      <p>Main page with chat button, questions sidebar, saved/favorited bar, </p>
       <form action="{% url 'da_question' user.id %}" method="post">
       {% csrf_token %}
         <input type="submit" value="Questionaire">
       </form>
+      <div class="boxTwo">
+      </div>
+      <div class="boxThree">
+        <div class="hootButton">HOOT</div>
+      </div>
+      <div class="boxFour" id="loaderText">
+        TEST CHANGE
+        <p>Main page with chat button, questions sidebar, saved/favorited bar, </p>
+      </div>
+      <button id="test_button">TEST button</button>
     </div>
   </body>
 </html>
