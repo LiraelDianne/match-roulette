@@ -19,7 +19,7 @@ def home(request):
         'people' : User.objects.all(),
     }
 
-    print context['user']
+    print context['user'].favorite
     return render(request, "dating_app/main.html", context)
 
 def profilePage(request, id):
@@ -40,13 +40,15 @@ def update_profile(request):
     #submit form from profile page
     if request.method == "POST":
         user = User.userManager.update(**request.POST)
+
         if user[0]:
+
             request.session['errors']
             return redirect(reverse("da_home"))
         else:
             request.session['errors'] = user[1]
         #return to home page, or updated profile page?
-        return redirect(reverse("da_profile"))
+        return redirect(reverse("da_profile", kwargs={'id':request.session['id']}))
 
 def loggedIn(request):
     if 'id' in request.session:

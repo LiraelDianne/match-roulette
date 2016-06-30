@@ -55,11 +55,11 @@ class UserManager(models.Manager):
         last_name = kwargs['last_name']
         alias = kwargs['alias']
         gender = kwargs['gender']
-        orientation = kwargs['orientation'] #returns a list
+        orientation = kwargs['orientation[]'] #returns a list
         description = kwargs['description']
         errors = {}
-        if first_name == "" or last_name == "" or alias == "" or email == "" or password == "" or confirm_password == "":
-            errors['blank'] = "Please fill-in name, alias, email, and password fields"
+        if first_name == "" or last_name == "" or alias == "":
+            errors['blank'] = "Please fill-in name, alias fields"
         if len(first_name) < 2:
             errors['first_name'] = "First Name is too short"
         if len(last_name) < 2:
