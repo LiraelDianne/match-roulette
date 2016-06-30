@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>Realtime communication with WebRTC</title>
+
+  <link rel="stylesheet" href="css/main.css" />
+<style type="text/css">
+  .localVideo {
+    width: 40px;
+    height: 40px;
+  }
+</style>
+</head>
+
+<body>
+
+  <h1>Realtime communication with WebRTC</h1>
+
+  <div id="videos">
+    <video id="localVideo" class="localbox"autoplay muted>
+    <video id="remoteVideo" autoplay></video></video>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/lib/adapter.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>
