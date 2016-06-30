@@ -1,6 +1,6 @@
 * {
   margin: auto;
-
+  outline: 2px dotted green;
 }
 .box {
   width: 400px;
@@ -115,18 +115,30 @@ form {
 
 .main_sidebar {
   display: inline-block;
-  height: 200px;
+  height: 350px;
   width: 350px;
   margin-left: 5px;
-  border: 1px solid #bab280;
+  background-color: #5da4a8;
+  border-radius: 20px;
   vertical-align: top;
   margin-top: 15px;
 
 }
 
 .fav_user {
-  height: 60px;
-  width: 300px;
-  border: 1px dotted #bab280;
+  height: 100px;
+  width: 320px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #daf6e7;
+  margin-top: 10px;
+
+
+}
+
+#fav_alias {
+ margin: 10px;
+ text-align: left;
+ display: inline-block;
 
 }

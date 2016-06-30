@@ -7,7 +7,8 @@ from datetime import date
 
 def home(request):
     context = {
-        'user': User.objects.get(id=request.session['id'])
+        'user': User.objects.get(id=request.session['id']),
+        'people' : User.objects.all()
     }
     return render(request, "dating_app/main.html", context)
 
@@ -61,3 +62,4 @@ def submit_questionnaire(request):
         return redirect(reverse("da_home"))
 
     return redirect(reverse("da_question"))
+
