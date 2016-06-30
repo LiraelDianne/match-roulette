@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  {% load staticfiles %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <script src="{% static 'js/main.js' %}"></script>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="topBar">
+      <div class="topText"><div class="vcenter">Welcome, {{ user.first_name }}!</div></div>
+      <form class="" action="{% url 'rl_reset' %}" method="post">{% csrf_token %}
+        <input type='submit' value='Logout'>
+      </form>
+      {% if user.gender %}
+      <a href="{% url 'da_home'%}">Home</a>
+      {% endif %}
+    </div>
+    <fieldset>
+      <form action="{% url 'da_q_submit' %}" method="post">
+      {% csrf_token %}
+      <legend>Questionnaire</legend>
+      <p>Plese answer the following questions</p>
+      {% for question in questions %}
+      <label>{{question.id}}. {{question.question}}</label><br>
+        {% if question.image %}
+        {% endif %}
+        <input type="radio" name="{{question.id}}" value="option_a">{{question.option_a}}</input>
+        <input type="radio" name="{{question.id}}" value="option_b">{{question.option_b}}</input>
+        <input type="radio" name="{{question.id}}" value="option_c">{{question.option_c}}</input>
+        <input type="radio" name="{{question.id}}" value="option_d">{{question.option_d}}</input>
+        <br>
+        <select name='importance'>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      {% endfor %}
+      <input type="submit" value="Submit your answers" name="">
+      </form>
+    </fieldset>
+  </div>
+</body>
+</html>
