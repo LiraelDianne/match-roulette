@@ -59,7 +59,7 @@
       </div>
       <div class="main_sidebar">
         {% if user.Favorites %}
-        {% for person in user.Favorites %}
+          {% for person in user.Favorites %}
         <div class="fav_user">
           <div class="fav_u_body">
             <h3>{{ person.alias}}</h3> <!-- favorite user alias here -->
@@ -68,7 +68,7 @@
           </div> 
           <div class="avatar"></div>
         </div>
-        {% endfor %}
+          {% endfor %}
         {% else %}
         <div class="fav_user"><h2>You have not selected your favorite users, HOOT ON!</h2></div>
         {% endif %}
