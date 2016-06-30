@@ -16,8 +16,10 @@ from datetime import datetime
 def home(request):
     context = {
         'user': User.objects.get(id=request.session['id']),
-        'people' : User.objects.all()
+        'people' : User.objects.all(),
     }
+
+    print context['user']
     return render(request, "dating_app/main.html", context)
 
 def profilePage(request, id):
