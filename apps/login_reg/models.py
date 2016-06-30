@@ -109,5 +109,3 @@ class User(models.Model):
     description = models.CharField(max_length=500, default="")
     favorite = models.ManyToManyField('self', related_name='Favorites')
     blocked = models.ManyToManyField('self', related_name='Blocked')
-
-

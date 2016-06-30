@@ -103,6 +103,7 @@ form {
   font-size: 14px;
   color: black;
   display: inline-block;
+
 }
 .vcenter {
   vertical-align: top;
@@ -140,7 +141,7 @@ form {
   vertical-align: top;
   display: inline-block;
   text-align:left;
-  margin-right: 900px;
+  margin-right: 830px;
 }
 
 .fav_user {
