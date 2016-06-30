@@ -1,6 +1,6 @@
 * {
   margin: auto;
-  outline: 2px dotted green;
+/*  outline: 2px dotted limegreen;*/
 }
 .box {
   width: 400px;
@@ -65,6 +65,15 @@ input {
   text-align: center;
   background-color: #c7e5d6;
   vertical-align: top;
+}
+
+#hoot_logo {
+  vertical-align: top;
+  text-align: left;
+  display: inline-block;
+  margin-right: 900px;
+
+  
 }
 
 .hootButton {
@@ -136,9 +145,25 @@ form {
 
 }
 
-#fav_alias {
- margin: 10px;
- text-align: left;
- display: inline-block;
+.fav_u_body {
+  width:210px;
+  height: 80px;
+  text-align: center;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 10px;
 
 }
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  background-image: url('../image/owl1.png');
+  background-size: contain;
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 5px;
+  border: 1px solid black;
+
+}
+

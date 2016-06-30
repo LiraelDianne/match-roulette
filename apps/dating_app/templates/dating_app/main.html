@@ -25,6 +25,7 @@
   <body>
     <div class="wrapper">
       <div class="boxOne">
+        <div id="hoot_logo"><img src="{% static 'image/hootdate.jpg' %}"></div>
         <div class="topText"><div class="vcenter">Welcome, {{ user.first_name }}!</div></div>
         <form class="" action="{% url 'rl_reset' %}" method="post">{% csrf_token %}
           <input type='submit' value='Logout'>
@@ -60,7 +61,14 @@
         {% else %}
         <div class="fav_user"><p>You have not selected your favorite users, HOOT ON!</p></div>
         {% endif %}
-        <div class="fav_user"><h4 id="fav_alias">RICK88</h4></div>
+        <div class="fav_user">
+          <div class="fav_u_body">
+            <h3>RICK88</h3> <!-- favorite user alias here -->
+            <h5>Rick Grimes</h5>
+            <p>"The new world gonna nead Rick Grimes"</p>
+          </div> 
+          <div class="avatar"><!-- <img src="{% static 'image/avatar.png' %}"> --></div>
+        </div>
       </div>
     </div>
   </body>
