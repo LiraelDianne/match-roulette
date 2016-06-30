@@ -1,6 +1,6 @@
 * {
   margin: auto;
-/*  outline: 2px dotted limegreen;*/
+  outline: 2px dotted limegreen;
 }
 .box {
   width: 400px;
@@ -20,6 +20,17 @@
 h4 {
   margin: 30px;
 }
+h2 {
+  margin-top: 20px;
+}
+
+.profile_label {
+  text-align: left;
+  margin-left: 20px;
+  vertical-align: top;
+  margin-top: 10px;
+}
+
 input {
   margin: 10px;
 }
@@ -65,15 +76,6 @@ input {
   text-align: center;
   background-color: #c7e5d6;
   vertical-align: top;
-}
-
-#hoot_logo {
-  vertical-align: top;
-  text-align: left;
-  display: inline-block;
-  margin-right: 900px;
-
-  
 }
 
 .hootButton {
@@ -134,6 +136,13 @@ form {
 
 }
 
+#hoot_logo {
+  vertical-align: top;
+  display: inline-block;
+  text-align:left;
+  margin-right: 900px;
+}
+
 .fav_user {
   height: 100px;
   width: 320px;
@@ -166,4 +175,16 @@ form {
   border: 1px solid black;
 
 }
+
+.user_avatar {
+  width: 100px;
+  height: 100px;
+  background-image: url('../image/avatar.png');
+  background-size: contain;
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 5px;
+  border: 1px solid black;
+}
+
 
