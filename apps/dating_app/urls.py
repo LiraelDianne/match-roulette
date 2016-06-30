@@ -10,6 +10,6 @@ urlpatterns = [
     url(r'^questionnaire/submit$', views.submit_questionnaire, name='da_q_submit'),
     url(r'^bobtest$', views.bobtest, name='bob_test'),
     url(r'^hoot$', views.find_match, name='da_hoot'),
-    url(r'^testsesh$', views.test_sesh, name='testsesh'),
     url(r'^waiting$', views.wait, name='da_waiting'),
+    url(r'^endchat$', views.end_match, name='da_end_chat'),
 ]
