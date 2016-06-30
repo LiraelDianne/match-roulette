@@ -24,6 +24,9 @@
   </head>
   <body>
     <div class="wrapper">
+      <div class='testsession'>
+        <a name='test' href="{% url 'testsesh' %}">Test</a>
+      </div>
       <div class="boxOne">
         <div class="topText"><div class="vcenter">Welcome, {{ user.first_name }}!</div></div>
         <form class="" action="{% url 'rl_reset' %}" method="post">{% csrf_token %}
@@ -38,7 +41,7 @@
       <div class="boxTwo">
       </div>
       <div class="boxThree">
-        <div class="hootButton">HOOT</div>
+        <div class="hootButton"><a class="hootButton" href="{% url 'da_hoot' %}">HOOT</a></button>
       </div>
       <div class="boxFour" id="loaderText">
         TEST CHANGE
@@ -47,7 +50,7 @@
       <button id="test_button">TEST button</button><br>
       <div class="main_sidebar"></div>
       <div class="main_sidebar">
-        
+
       </div>
       <div class="main_sidebar">
         {% if user.Favorites %}

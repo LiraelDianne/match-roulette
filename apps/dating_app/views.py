@@ -1,9 +1,17 @@
 from django.shortcuts import render, HttpResponse, redirect
+from django.core.urlresolvers import reverse
+from django.contrib.sessions.models import Session
+from django.contrib.sessions.backends.db import SessionStore
+from django.utils.crypto import get_random_string
+
 from ..login_reg.models import Gender, User, UserManager
 from .models import Question, UserAnswer
-from django.core.urlresolvers import reverse
+from .matching import findMatch
+
 import copy
-from datetime import date
+from datetime import datetime
+
+
 
 def home(request):
     context = {
@@ -63,3 +71,48 @@ def submit_questionnaire(request):
 
     return redirect(reverse("da_question"))
 
+def find_match(request):
+    user = User.objects.get(id=request.session['id'])
+    sessions = Session.objects.all()
+    queue = []
+    for session in sessions:
+        key = session.session_key
+        s = SessionStore(session_key=key)
+        if s['status'] == "active":
+            queue.append(s)
+    # now I have a queue which is a list of active sessions
+    timesortedqueue = sorted(queue, key=itemgetter('queued'))
+    print timesortedqueue
+    # sorted by oldest first
+    match = findMatch(user, timesortedqueue)
+    # check for users
+    if match:
+    # if match found:
+        room = get_random_string(length=32)
+        request.session['room'] = room
+        match['room'] = room
+    # add a room name to each session
+        match.save()
+        #save the match session
+    else:
+        #mark them as active so they get sorted into the queue
+        request.session['status'] = "active"
+        #give them a timestamp
+        request.session['queued'] = datetime.now()
+        #kick them out after five minutes
+
+
+    return redirect(reverse('da_waiting'))
+
+def test_sesh(request):
+    sessions = Session.objects.all()
+    for session in sessions:
+        key = session.session_key
+        sesh = SessionStore(session_key=key)
+    sesh['room'] = 'newroom'
+    sesh.save()
+    print sesh
+    return render(request, 'test.html')
+
+def wait(request):
+    return render(request, 'dating_app/wait.html')
