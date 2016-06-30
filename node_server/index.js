@@ -14,11 +14,22 @@ var io = require('socket.io')(server);
 // var cors = require('cors');
 
 
+
 server.listen(8080);
 
 app.get('/', function (req, res) {
   console.log("get it?")
+
   res.sendfile(__dirname + '/index.html');
+});
+
+app.get('/test/:room', function (req, res) {
+  console.log("below is the room name")
+  console.log(room);
+  console.log(req.params); //key value pair with room and whatever got passed-in
+  console.log(admin.mountpath); // [ '/adm*n', '/manager' ]
+  res.sendfile(__dirname + '/index.html');
+  res.send('Admin Homepage');
 });
 
 app.get('/hello', function (req,res){

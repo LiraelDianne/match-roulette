@@ -12,6 +12,9 @@ def home(request):
     }
     return render(request, "dating_app/main.html", context)
 
+def bobtest(request):
+    return render(request, "dating_app/bobtest.html")
+
 def profilePage(request, id):
     #this page loads the profile information and then compiles the resulting page...
     #Todo!  It determines if the user should be shown their own (editable) page or a static page of another users
@@ -62,4 +65,3 @@ def submit_questionnaire(request):
         return redirect(reverse("da_home"))
 
     return redirect(reverse("da_question"))
-
