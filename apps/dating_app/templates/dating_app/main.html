@@ -24,6 +24,9 @@
   </head>
   <body>
     <div class="wrapper">
+      <div class='testsession'>
+        <a name='test' href="{% url 'testsesh' %}">Test</a>
+      </div>
       <div class="boxOne">
         <div id="hoot_logo"><img src="{% static 'image/hootdate.jpg' %}"></div>
         <div class="topText"><div class="vcenter">Welcome, {{ user.first_name }}!</div></div>
@@ -39,7 +42,7 @@
       <div class="boxTwo">
       </div>
       <div class="boxThree">
-        <div class="hootButton">HOOT</div>
+        <div class="hootButton"><a class="hootButton" href="{% url 'da_hoot' %}">HOOT</a></button>
       </div>
       <div class="boxFour" id="loaderText">
         TEST CHANGE

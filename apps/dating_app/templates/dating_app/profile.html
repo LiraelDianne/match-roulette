@@ -16,7 +16,7 @@
           <input class="head" type='submit' value='Logout'>
         </form>
         {% if user.gender %}
-        <a href="{% url 'da_home' %}">Home</a>
+        <a name='home-button' href="{% url 'da_home' %}">Home</a>
         {% endif %}
       </div>
 
