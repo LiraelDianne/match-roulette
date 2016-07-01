@@ -28,7 +28,7 @@ def login(request):
 
 def register(request):
     if request.method == 'POST':
-        user_tuple = User.userManager.register(request.POST['first_name'], request.POST['last_name'], request.POST['alias'], request.POST['email'], request.POST['password'], request.POST['confirm_password'], request.POST['birthday'])
+        user_tuple = User.userManager.register(request.POST['first_name'], request.POST['last_name'], request.POST['alias'], request.POST['email'], request.POST['password'], request.POST['confirm_password'])
         if user_tuple[0]:
             request.session['id'] = user_tuple[1].id
             request.session['email'] = user_tuple[1].email
