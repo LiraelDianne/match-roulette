@@ -1,8 +1,211 @@
+* {
+  font-family: 'Montserrat', sans-serif;
+  margin: auto;
+
+}
+
+.box {
+  width: 400px;
+
+  border: 3px solid black;
+  padding-right: 30px;
+  padding-bottom: 30px;
+  text-align: right;
+  display: inline-block;
+  margin: 10px;
+  vertical-align: top;
+}
+.wrapper {
+  width: 100%;
+  text-align: center;
+}
+h4 {
+  margin: 30px;
+}
+h2 {
+  margin-top: 20px;
+}
+
+.profile_label {
+  text-align: left;
+  margin-left: 20px;
+  vertical-align: top;
+  margin-top: 10px;
+}
+
+input {
+  margin: 10px;
+}
+.errors {
+  color: red;
+}
+.randstring {
+  margin: 30px;
+  font-size: 40px;
+}
+
+.boxOne {
+  width: 100%;
+  height: 74px;
+  max-height: 74px;
+  text-align: center;
+  background-color: #ef9fb2;
+  vertical-align: top;
+}
+
+.boxTwo {
+  width: 100%;
+  height: 24px;
+  max-height: 24px;
+  text-align: center;
+  background-color: #db8871;
+  vertical-align: top;
+}
+
+.boxThree {
+  width: 100%;
+  height: 350px;
+  text-align: center;
+  background-color: #d0c98e;
+  padding-top: 5px;
+}
+
+.boxFour {
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  text-align: center;
+  background-color: #c7e5d6;
+  vertical-align: top;
+}
+
+.hangupButton {
+  width: 280px;
+  height: 80px;
+  background-color: #5ca4a7;
+  border-radius: 10px;
+  margin-top: 13px;
+  vertical-align: center;
+  padding-top: 3px;
+  padding-bottom: 40px;
+  font-size: 50px;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  border-left: solid;
+  border-bottom: solid;
+  border-color: #db8871;
+  border-width: 6px;
+}
+
+#videos {
+  background-color: #db8871;
+  width: 800px;
+  height: 300px;
+  border-radius: 0px 0px 10px 10px;
+  margin-top: -10px;
+}
+form {
+  display: inline-block;
+}
+
+.topText {
+  font-size: 14px;
+  color: black;
+  display: inline-block;
+
+}
+.vcenter {
+  vertical-align: top;
+}
+.pokersLog {
+  width: 300px;
+  height: 200px;
+  overflow: scroll;
+  outline: 2px solid black;
+  margin-bottom: 10px;
+}
+.usersLog {
+  width: 800px;
+  height: 400px;
+  overflow: scroll;
+  outline: 2px solid black;
+}
+.pokerlogText{
+  font-size: 12px;
+}
+
+.main_sidebar {
+  display: inline-block;
+  height: 350px;
+  width: 350px;
+  margin-left: 5px;
+  background-color: #5da4a8;
+  border-radius: 20px;
+  vertical-align: top;
+  margin-top: 15px;
+}
+
+#hoot_logo {
+  vertical-align: top;
+  display: inline-block;
+  text-align:left;
+  margin-right: 830px;
+}
+
+.fav_user {
+  height: 100px;
+  width: 320px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #daf6e7;
+  margin-top: 10px;
+
+
+}
+
+.fav_u_body {
+  width:210px;
+  height: 80px;
+  text-align: center;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 10px;
+
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  background-image: url('../image/owl1.png');
+  background-size: contain;
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 5px;
+  border: 1px solid black;
+
+}
+
+.user_avatar {
+  width: 100px;
+  height: 100px;
+  background-image: url('../image/avatar.png');
+  background-size: contain;
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 5px;
+  border: 1px solid black;
+}
+
 body {
-  font-family: sans-serif;
+  background-color: #c7e5d6;
 }
 
 video {
+  margin-top: 20px;
   max-width: 100%;
   width: 320px;
+  background-color: white;
+  min-height: 20px;
+  border-radius: 5px;
+  display: inline-block;
 }
