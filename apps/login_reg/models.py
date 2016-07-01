@@ -50,14 +50,18 @@ class UserManager(models.Manager):
 		errors = {"blank" : "", "email" : "", "first_name" : "", "last_name" : "", "alias" : "", "password" : "", "confirm_password" : "", "invalid" : ""}
 		return (True, self.get(email=email))
 
-    def update(self, **kwargs):
-        first_name = kwargs['first_name'][0]
-        last_name = kwargs['last_name'][0]
-        alias = kwargs['alias'][0]
-        gender = kwargs['gender'][0]
-        orientation = kwargs['orientation[]']
-        description = kwargs['description'][0]
-        errors = {}
+	def update(self, **kwargs):
+		errors = {}
+		userID = kwargs['userID'][0]
+		first_name = kwargs['first_name'][0]
+		last_name = kwargs['last_name'][0]
+		alias = kwargs['alias'][0]
+		gender = kwargs['gender'][0]
+		if 'orientation[]' not in kwargs:
+			errors['orientation'] = "Please tell us who you're interested in!"
+		else:
+			orientation = kwargs['orientation[]']
+		description = kwargs['description'][0]
 
 		if first_name == "" or last_name == "" or alias == "":
 			errors['blank'] = "Please fill-in name, alias fields"
@@ -68,14 +72,10 @@ class UserManager(models.Manager):
 		if len(alias) < 2:
 				errors['alias'] = "Alias is too short"
 		#check if a gender is selected
-		if not gender:
+		if gender == "1":
 				errors['gender'] = "Please select a gender"
-		try:
-			orientation
-		except:
-			errors['orientation'] = "Please tell us who you're interested in!"
 		if errors:
-				return (False, errors)
+			return (False, errors)
 
 		errors = {
 			"blank" : "",
@@ -85,15 +85,12 @@ class UserManager(models.Manager):
 			"gender": "",
 			"orientation": "",
 			}
-			uID = userID[0]
-			print uID
-			user = User.objects.get(id = uID)
-			User.objects.filter(id=uID).update(first_name=first_name, last_name=last_name, alias=alias, gender=gender, description = description)
-			for gender_id in orientation:
-				print gender_id
-				gender = Gender.objects.get(id=gender_id)
-				user.orientation.add(gender)
-			return (True, self.get(id=uID))
+		user = User.objects.get(id = userID)
+		User.objects.filter(id=userID).update(first_name=first_name, last_name=last_name, alias=alias, gender=gender, description = description)
+		for gender_id in orientation:
+			gender = Gender.objects.get(id=gender_id)
+			user.orientation.add(gender)
+		return (True, self.get(id=userID))
 
 class User(models.Model):
 		first_name = models.CharField(max_length=45)

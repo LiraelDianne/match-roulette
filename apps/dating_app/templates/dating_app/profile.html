@@ -20,8 +20,6 @@
         {% endif %}
       </div>
 			<!-- Start adding profile box here -->
-
-<<<<<<< HEAD
       <div class="profile_body_wrapper"> <!-- profile body box -->
         <div class="profile_body"> <!-- left side -->
           <div id="user_pic"></div>
@@ -34,14 +32,18 @@
             <form action="{% url 'da_update' %}" method="POST">
               {% csrf_token %}
             <label>First Name:</label>
+            <div class="errors">{{ request.session.error.first_name }}</div>
             <input type="text" name="first_name" value='{{ user.first_name }}'>
             <br>
             <label>Last Name:</label>
+            <div class="errors">{{ request.session.error.last_name }}</div>
             <input type="text" name="last_name" value='{{ user.last_name }}'>
             <br>
             <label>Alias Name:</label>
+            <div class="errors">{{ request.session.error.alias }}</div>
             <input type="text" name="alias" value='{{ user.alias }}'>
             <label>Gender:</label>
+            <div class="errors">{{ request.session.error.gender }}</div>
               <select name='gender'>
                 <option disabled selected value></option>
               {% for gender in genders %}
@@ -54,6 +56,7 @@
               </select>
               <br>
             <label>Who do you want to talk to?</label><br>
+            <div class="errors">{{ request.session.error.orientation }}</div>
               {% for gender in genders %}
                 {% if gender.id != 1 %}
                   {% if gender.id in user.orientation %}
@@ -67,6 +70,7 @@
               {% endfor %}
             <label>Description:</label>
               <br>
+              <div class="errors">{{ request.session.error.description }}</div>
               <textarea name="description" rows="9" cols="50" value='{{ user.description }}'></textarea>
               <br>
               <input type="hidden" name="userID" value="{{ request.session.id }}">
