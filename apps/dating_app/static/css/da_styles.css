@@ -76,6 +76,8 @@ input {
   text-align: center;
   background-color: #c7e5d6;
   vertical-align: top;
+  position: relative;
+  z-index: 1;
 }
 
 .hootButton {
@@ -87,14 +89,19 @@ input {
   vertical-align: center;
   padding-top: 18px;
   padding-bottom: 40px;
-  font-size: 50px;
-  font-family: 'Montserrat', sans-serif;
-  color: #5ca4a7;
   border-left: solid;
   border-bottom: solid;
   border-color: #bab280;
   border-width: 6px;
 }
+
+.hootButton a {
+  font-size: 50px;
+  font-family: 'Montserrat', sans-serif;
+  color: #5ca4a7;
+  text-decoration: none;
+}
+
 form {
   display: inline-block;
 }
@@ -134,7 +141,12 @@ form {
   border-radius: 20px;
   vertical-align: top;
   margin-top: 15px;
+  z-index: 20;
 
+}
+
+.errors {
+  color: red;
 }
 
 #hoot_logo {
