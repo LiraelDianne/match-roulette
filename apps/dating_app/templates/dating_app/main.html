@@ -24,12 +24,9 @@
   </head>
   <body>
     <div class="wrapper">
-      <div class='testsession'>
-        <a name='test' href="{% url 'testsesh' %}">Test</a>
-      </div>
       <div class="boxOne">
         <div id="hoot_logo"><img src="{% static 'image/hootdate.jpg' %}"></div>
-        <div class="topText"><div class="vcenter">Welcome, {{ user.first_name }}!</div></div>
+        <div class="topText vcenter"></div>
         <form class="" action="{% url 'rl_reset' %}" method="post">{% csrf_token %}
           <input type='submit' value='Logout'>
         </form>
@@ -42,39 +39,36 @@
       <div class="boxTwo">
       </div>
       <div class="boxThree">
-        <div class="hootButton"><a class="hootButton" href="{% url 'da_hoot' %}">HOOT</a></button>
+        <div class="hootButton"><a href="http://52.37.104.56/">HOOT</a></div>
       </div>
       <div class="boxFour" id="loaderText">
-        TEST CHANGE
-        <p>Main page with chat button, questions sidebar, saved/favorited bar, </p>
-      </div>
-      <button id="test_button">TEST button</button><br>
-      <div class="main_sidebar">
-        <h4>ADD ADDITIONAL QUESTIONAIRE HERE</h4>
-      </div>
-      <div class="main_sidebar">
-        <h2>Welcome! {{ user.alias }}</h2><br>
-        <div class="user_avatar"></div>
-        <h3 class="profile_label">Profile name:</h3>
-        <p class="profile_label">{{ user.first_name }} {{ user.last_name }} </p>
-        <h3 class="profile_label">Personal Description:</h3>
-        <p class="profile_label">{{ user.description }} </p>
-      </div>
-      <div class="main_sidebar">
-        {% if user.Favorites %}
-          {% for person in user.Favorites %}
-        <div class="fav_user">
-          <div class="fav_u_body">
-            <h3>{{ person.alias}}</h3> <!-- favorite user alias here -->
-            <h5>{{ person.first_name }} {{ person.last_name }}</h5>
-            <p>{{ person.description}}</p>
-          </div> 
+        <div class="main_sidebar">
+          <h4>ADD ADDITIONAL QUESTIONAIRE HERE</h4>
+        </div>
+        <div class="main_sidebar">
+          <h2>Welcome! {{ user.alias }}</h2><br>
+          <div class="user_avatar"></div>
+          <h3 class="profile_label">Profile name:</h3>
+          <p class="profile_label">{{ user.first_name }} {{ user.last_name }} {{ user.gender.name }}</p>
+          <h3 class="profile_label">Personal Description:</h3>
+          <p class="profile_label">{{ user.description }} </p>
+        </div>
+        <div class="main_sidebar">
+          {% if user.Favorites %}
+            {% for person in user.Favorites %}
+          <div class="fav_user">
+            <div class="fav_u_body">
+              <h3>{{ person.alias}}</h3> <!-- favorite user alias here -->
+              <h5>{{ person.first_name }} {{ person.last_name }}</h5>
+              <p>{{ person.description}}</p>
+            </div>
           <div class="avatar"></div>
         </div>
-          {% endfor %}
-        {% else %}
-        <div class="fav_user"><h2>You have not selected your favorite users, HOOT ON!</h2></div>
-        {% endif %}
+            {% endfor %}
+          {% else %}
+        <div class="fav_user"><h2>You have not selected your favorite users. HOOT ON!</h2></div>
+          {% endif %}
+        </div>
       </div>
     </div>
   </body>
