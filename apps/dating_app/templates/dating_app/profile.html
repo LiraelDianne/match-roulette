@@ -1,74 +1,79 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    {% load staticfiles %}
-   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <script src="{% static 'js/main.js' %}"></script>
-  </head>
-  <body>
-    <div class="wrapper">
-      <div class="topBar">
-        <div class="topText"><div class="vcenter">Welcome, {{ user.first_name }}!</div></div>
-        <form class="" action="{% url 'rl_reset' %}" method="post">
-        {% csrf_token %}
-          <input class="head" type='submit' value='Logout'>
-        </form>
-        {% if user.gender %}
-        <a name='home-button' href="{% url 'da_home' %}">Home</a>
-        {% endif %}
-      </div>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		{% load staticfiles %}
+	 <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+		<script src="{% static 'js/main.js' %}"></script>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="topBar">
+				<div class="topText"><div class="vcenter">Welcome, {{ user.first_name }}!</div></div>
+				<form class="" action="{% url 'rl_reset' %}" method="post">
+				{% csrf_token %}
+					<input class="head" type='submit' value='Logout'>
+				</form>
+				{% if user.gender %}
+				<a name='home-button' href="{% url 'da_home' %}">Home</a>
+				{% endif %}
+			</div>
 
-      <!-- Start adding profile box here -->
+			<!-- Start adding profile box here -->
 
-      <div class="profile_body_wrapper"> <!-- profile body box -->
-        <div class="profile_body"> <!-- left side -->
-          <div id="user_pic"></div>
-          <p>Name: {{user.first_name}}</p>
-          <p>Age: ??? </p>
-        </div>
-        <div class="profile_body">
-          <fieldset>
-            <legend>Profile Info</legend>
-            <form action="{% url 'da_update' %}" method="POST">
-              {% csrf_token %}
-            <label>Name:</label>
-            <input type="text" name="first_name" value='{{ user.first_name }}'>
-            <br>
-            <label>Last Name:</label>
-            <input type="text" name="last_name" value='{{ user.last_name }}'>
-            <br>
-            <label>Alias Name:</label>
-            <input type="text" name="alias" value='{{ user.alias }}'>
-            <label>Gender:</label>
-              <select name='gender'>
-                <option disabled selected value></option>
-              {% for gender in genders %}
-                {% if user.gender.id == gender.id %}
-                <option selected value="{{gender.id}}">{{gender.name}}</option>
-                {% else %}
-                <option value="{{gender.id}}">{{gender.name}}</option>
-                {% endif %}
-              {% endfor %}
-              </select>
-              <br>
-            <label>Who do you want to talk to?</label><br>
-              {% for gender in genders %}
-                <input type="checkbox" name="orientation[]" value="{{ gender.id }}" >{{ gender.name }}</input>
-                {{ user.orientation_set }}
-              <br>
-              {% endfor %}
-            <label>Description:</label>
-              <br>
-              <textarea name="description" rows="9" cols="50" value='{{ user.description }}'></textarea>
-              <br>
-              <input type="submit" value="Update Info">
-            </form>
-          </fieldset>
-        </div> 
-        <!-- End adding profile box here -->
-      </div>
-    </div>
-  </body>
+			<div class="profile_body_wrapper"> <!-- profile body box -->
+				<div class="profile_body"> <!-- left side -->
+					<div id="user_pic"></div>
+					<p>Name: {{user.first_name}}</p>
+					<p>Age: </p>
+					{% if messages %}
+						{% for message in messages %}
+						<div class="errors">{{ message }}</div>
+						{% endfor %}
+					{% endif %}
+				</div>
+				<div class="profile_body">
+					<fieldset>
+						<legend>Profile Info</legend>
+						<form action="{% url 'da_update' %}" method="POST">
+							{% csrf_token %}
+						<label>Name:</label>
+						<input type="text" name="first_name" value='{{ user.first_name }}'>
+						<br>
+						<label>Last Name:</label>
+						<input type="text" name="last_name" value='{{ user.last_name }}'>
+						<br>
+						<label>Alias Name:</label>
+						<input type="text" name="alias" value='{{ user.alias }}'>
+						<label>Gender:</label>
+							<select name='gender'>
+								<option disabled selected value></option>
+							{% for gender in genders %}
+								{% if user.gender.id == gender.id %}
+								<option selected value="{{gender.id}}">{{gender.name}}</option>
+								{% else %}
+								<option value="{{gender.id}}">{{gender.name}}</option>
+								{% endif %}
+							{% endfor %}
+							</select>
+							<br>
+						<label>Who do you want to talk to?</label><br>
+							{% for gender in genders %}
+								<input type="checkbox" name="orientation" value="{{ gender.id }}" >{{ gender.name }}</input>
+								{{ user.orientation_set }}
+							<br>
+							{% endfor %}
+						<label>Description:</label>
+							<br>
+							<textarea name="description" rows="9" cols="50" value='{{ user.description }}'></textarea>
+							<br>
+							<input type="submit" value="Update Info">
+						</form>
+					</fieldset>
+				</div> 
+				<!-- End adding profile box here -->
+			</div>
+		</div>
+	</body>
 </html>
