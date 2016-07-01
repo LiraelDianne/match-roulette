@@ -38,7 +38,7 @@
 						<legend>Profile Info</legend>
 						<form action="{% url 'da_update' %}" method="POST">
 							{% csrf_token %}
-						<label>Name:</label>
+						<label>First Name:</label>
 						<input type="text" name="first_name" value='{{ user.first_name }}'>
 						<br>
 						<label>Last Name:</label>
@@ -60,7 +60,7 @@
 							<br>
 						<label>Who do you want to talk to?</label><br>
 							{% for gender in genders %}
-								<input type="checkbox" name="orientation" value="{{ gender.id }}" >{{ gender.name }}</input>
+								<input type="checkbox" name="orientation[]" value="{{ gender.id }}" >{{ gender.name }}</input>
 								{{ user.orientation_set }}
 							<br>
 							{% endfor %}
