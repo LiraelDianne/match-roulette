@@ -1,5 +1,6 @@
 * {
   margin: auto;
+  font-family: 'Montserrat', sans-serif;
 
 }
 .box {
@@ -187,5 +188,3 @@ form {
   margin-left: 5px;
   border: 1px solid black;
 }
-
-
