@@ -11,17 +11,17 @@ from .matching import findMatch
 import copy
 from datetime import datetime
 
+import threading
+import logging
+logging.basicConfig(level=logging.DEBUG, format='%(message)s',)
+
+
 def home(request):
     context = {
         'user': User.objects.get(id=request.session['id']),
-        'people' : User.objects.all(),
+        'people' : User.objects.all()
     }
-
-    print context['user']
     return render(request, "dating_app/main.html", context)
-
-def bobtest(request):
-    return render(request, "dating_app/bobtest.html")
 
 def profilePage(request, id):
     #this page loads the profile information and then compiles the resulting page...
@@ -76,41 +76,57 @@ def submit_questionnaire(request):
 
 def find_match(request):
     user = User.objects.get(id=request.session['id'])
+    sessions = Session.objects.all()
     queue = []
-    #mark them as active so they get sorted into the queue
-    request.session['status'] = "active"
-    #give them a timestamp
-    request.session['queued'] = datetime.now()
+    for session in sessions:
+        key = session.session_key
+        s = SessionStore(session_key=key)
+        if s['status'] == "active":
+            queue.append(s)
+    # now I have a queue which is a list of active sessions
+    timesortedqueue = sorted(queue, key=itemgetter('queued'))
+    print timesortedqueue
+    # sorted by oldest first
+    match = findMatch(user, timesortedqueue)
+    # check for users
+    if match:
+    # if match found:
+        match['match'] = "found"
+        request.session['match'] = "found"
+        match.save()
+        #save the match session
+        return render(request, "dating_app/found.html")
 
-    # logic to break while after five minutes
+    else:
+        #mark them as active so they get sorted into the queue
+        request.session['status'] = "active"
+        #give them a timestamp
+        request.session['queued'] = datetime.now()
+        return redirect(reverse('da_waiting'))
+
+def Timeout():
+    timeout = True
+
+def checkmatch(request):
+    #kick them out after five minutes
     timeout = False
-    def Timeout():
-        timeout = True
-    timer = Timer(60*5, Timeout)
+    timer = threading.Timer(60*5, Timeout)
     timer.start()
 
     while not timeout:
-        sessions = Session.objects.all()
-        for session in sessions:
-            key = session.session_key
-            s = SessionStore(session_key=key)
-            if s['status'] == "active":
-                queue.append(s)
-        # now I have a queue which is a list of active sessions
-        timesortedqueue = sorted(queue, key=itemgetter('queued'))
-        # sorted by oldest first
-        if len(queue) == 2:
-            request.session['status'] = "not active"
-            request.session['match'] = "found"
-            timer.cancel()
-            return redirect(reverse("da_match"))
-
-    request.session['status'] = "not active"
+        if request.session['match'] == "found":
+            return render(request, "dating_app/found.html")
+    request.session['status'] = ""
     request.session['match'] = "not found"
-    return redirect(reverse('da_waiting'))
+
+    return render(request, "dating_app/main.html")
+
 
 def wait(request):
+    queue = threading.Thread(target=checkmatch, args=(request, ))
+
     return render(request, 'dating_app/wait.html')
+
 
 def foundmatch(request):
     return render(request, 'dating_app/found.html')
