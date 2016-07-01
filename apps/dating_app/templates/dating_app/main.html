@@ -30,20 +30,24 @@
         <form class="" action="{% url 'rl_reset' %}" method="post">{% csrf_token %}
           <input type='submit' value='Logout'>
         </form>
+        <div class="linkbuddy">
         <a href="{% url 'da_profile' user.id %}">Profile</a>
       </div>
-      <form action="{% url 'da_question' user.id %}" method="post">
-        {% csrf_token %}
-        <input type="submit" value="Questionaire">
-      </form>
+
       <div class="boxTwo">
       </div>
       <div class="boxThree">
-        <div class="hootButton"><a href="http://52.37.104.56/">HOOT</a></div>
+        <div class="hootButton"><a href="http://52.26.240.146/">HOOT</a></div>
       </div>
       <div class="boxFour" id="loaderText">
         <div class="main_sidebar">
-          <h4>ADD ADDITIONAL QUESTIONAIRE HERE</h4>
+          <h4>QUESTIONS TAB</h4>
+          <form action="{% url 'da_question' user.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Questionaire">
+          </form>
+          <div class="fav_user"><div class="linkbuddy"><h2></h2></div></div>
+          <div class="fav_user"><div class="linkbuddy"><h2></h2></div></div>
         </div>
         <div class="main_sidebar">
           <h2>Welcome {{ user.alias }}!</h2><br>
@@ -67,8 +71,10 @@
         </div>
             {% endfor %}
           {% else %}
-        <div class="fav_user"><h2>You have not selected your favorite users. HOOT ON!</h2></div>
+        <div class="fav_user"><div class="linkbuddy"><h2>You have not selected your favorite users. HOOT ON!</h2></div></div>
           {% endif %}
+          <div class="fav_user"><div class="linkbuddy"><h2></h2></div></div>
+          <div class="fav_user"><div class="linkbuddy"><h2></h2></div></div>
         </div>
       </div>
     </div>
