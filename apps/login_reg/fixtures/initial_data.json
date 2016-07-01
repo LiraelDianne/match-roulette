@@ -3,19 +3,26 @@
     "model": "login_reg.gender",
     "pk": 1,
     "fields": {
-      "name": "Male"
+      "name": ""
     }
   },
   {
     "model": "login_reg.gender",
     "pk": 2,
     "fields": {
-      "name": "Female"
+      "name": "Male"
     }
   },
   {
     "model": "login_reg.gender",
     "pk": 3,
+    "fields": {
+      "name": "Female"
+    }
+  },
+  {
+    "model": "login_reg.gender",
+    "pk": 4,
     "fields": {
       "name": "Non-binary"
     }
