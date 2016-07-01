@@ -4,25 +4,28 @@
 <head>
 
   <title>Hootdate Chat</title>
-
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/main.css" />
-<style type="text/css">
-  .localVideo {
-    width: 40px;
-    height: 40px;
-  }
-</style>
 </head>
 
 <body>
-
-  <h1>Realtime communication with WebRTC</h1>
-
-  <div id="videos">
-    <video id="localVideo" class="localbox"autoplay muted>
-    <video id="remoteVideo" autoplay></video></video>
+<div class="wrapper">
+  <div class="boxOne">
+    <div id="hoot_logo"><img src="images/hootdate.jpg"></div>
+  </div>
+  <div class="boxTwo">
+  </div>
+  <div class="boxThree">
+    <div id="videos">
+      <video id="localVideo" class="localbox"autoplay muted></video>
+      <video id="remoteVideo" autoplay></video>
+    </div>
+    <button class="hangupButton" href="{% url 'da_hoot' %}">HANGUP</button>
+  </div>
+  <div class="boxFour" id="loaderText">
   </div>
 
+</div>
   <script src="/socket.io/socket.io.js"></script>
   <script src="js/lib/adapter.js"></script>
   <script src="js/main.js"></script>
