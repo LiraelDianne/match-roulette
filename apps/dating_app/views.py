@@ -32,7 +32,6 @@ def profilePage(request, id):
 		context = {
 				'user': currentuser,
 				'genders': Gender.objects.all(),
-
 		}
 		#todo: get errors working
 		return render(request, "dating_app/profile.html", context)
@@ -44,7 +43,10 @@ def update_profile(request):
 			user = User.userManager.update(**request.POST)
 			if user[0]:
 				request.session['error'] = {"blank" : "", "first_name" : "", "last_name" : "", "alias" : "", "gender": "", "orientation":""}
-				return redirect(reverse("da_home"))
+				if UserAnswer.objects.filter(answerer=user[1]):
+					return redirect(reverse("da_home"))
+				else:
+					return redirect(reverse("da_question", kwargs={'id':request.session['id']}))
 			else:
 				request.session['error'] = user[1]
 				return redirect(reverse("da_profile", kwargs= {'id':request.session['id']}))

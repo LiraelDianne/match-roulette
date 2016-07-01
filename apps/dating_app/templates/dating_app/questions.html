@@ -26,19 +26,22 @@
       {% for question in questions %}
       <label>{{question.id}}. {{question.question}}</label><br>
         {% if question.image %}
+          <img src='{% static "image/triangles.png" %}' width="200" height="200" />
+          <br>
         {% endif %}
         <input type="radio" name="{{question.id}}" value="option_a">{{question.option_a}}</input>
         <input type="radio" name="{{question.id}}" value="option_b">{{question.option_b}}</input>
         <input type="radio" name="{{question.id}}" value="option_c">{{question.option_c}}</input>
         <input type="radio" name="{{question.id}}" value="option_d">{{question.option_d}}</input>
         <br>
+        <p class='dropdown'>Importance:</p>
         <select name='importance'>
           <option>1</option>
           <option>2</option>
           <option>3</option>
           <option>4</option>
           <option>5</option>
-        </select>
+        </select><br>
       {% endfor %}
       <input type="submit" value="Submit your answers" name="">
       </form>
