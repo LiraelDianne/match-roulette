@@ -10,6 +10,8 @@ from .matching import findMatch
 
 import copy
 from datetime import datetime
+from django.utils import timezone
+
 
 
 
@@ -30,7 +32,10 @@ def profilePage(request, id):
     #Todo!  It determines if the user should be shown their own (editable) page or a static page of another users
     #Crystal: can this just be an edit button in the template that only displays if the user id is the same as the session id?
     currentuser=User.objects.get(id=request.session['id'])
+    test = (timezone.now() - currentuser.birthday)/365
+    words = str(test).split()
     context = {
+        'age': words[0],
         'user': currentuser,
         'genders': Gender.objects.all(),
 
