@@ -51,12 +51,12 @@ class UserManager(models.Manager):
         return (True, self.get(email=email))
 
     def update(self, **kwargs):
-        first_name = kwargs['first_name']
-        last_name = kwargs['last_name']
-        alias = kwargs['alias']
-        gender = kwargs['gender']
-        orientation = kwargs['orientation'] #returns a list
-        description = kwargs['description']
+        first_name = kwargs['first_name'][0]
+        last_name = kwargs['last_name'][0]
+        alias = kwargs['alias'][0]
+        gender = kwargs['gender'][0]
+        orientation = kwargs['orientation[]']
+        description = kwargs['description'][0]
         errors = {}
         if first_name == "" or last_name == "" or alias == "" or email == "" or password == "" or confirm_password == "":
             errors['blank'] = "Please fill-in name, alias, email, and password fields"

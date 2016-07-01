@@ -15,7 +15,7 @@
         {% csrf_token %}
           <input class="head" type='submit' value='Logout'>
         </form>
-        {% if user.gender %}
+        {% if user.description %}
         <a name='home-button' href="{% url 'da_home' %}">Home</a>
         {% endif %}
       </div>
@@ -45,19 +45,25 @@
               <select name='gender'>
                 <option disabled selected value></option>
               {% for gender in genders %}
-                {% if user.gender.id == gender.id %}
-                <option selected value="{{gender.id}}">{{gender.name}}</option>
-                {% else %}
-                <option value="{{gender.id}}">{{gender.name}}</option>
+                  {% if user.gender.id == gender.id %}
+                  <option selected value="{{gender.id}}">{{gender.name}}</option>
+                  {% else %}
+                  <option value="{{gender.id}}">{{gender.name}}</option>
                 {% endif %}
               {% endfor %}
               </select>
               <br>
             <label>Who do you want to talk to?</label><br>
               {% for gender in genders %}
-                <input type="checkbox" name="orientation[]" value="{{ gender.id }}" >{{ gender.name }}</input>
-                {{ user.orientation_set }}
-              <br>
+                {% if gender.id != 1 %}
+                  {% if gender.id in user.orientation %}
+                    <input type="checkbox" checked name="orientation[]" value="{{ gender.id }}" >{{ gender.name }}</input>
+                    <br>
+                  {% else %}
+                    <input type="checkbox" name="orientation[]" value="{{ gender.id }}" >{{ gender.name }}</input>
+                  <br>
+                  {% endif %}
+                {% endif %}
               {% endfor %}
             <label>Description:</label>
               <br>
@@ -66,7 +72,7 @@
               <input type="submit" value="Update Info">
             </form>
           </fieldset>
-        </div> 
+        </div>
         <!-- End adding profile box here -->
       </div>
     </div>

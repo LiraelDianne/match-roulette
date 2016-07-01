@@ -26,7 +26,7 @@
     <div class="wrapper">
       <div class="boxOne">
         <div id="hoot_logo"><img src="{% static 'image/hootdate.jpg' %}"></div>
-        <div class="topText"><div class="vcenter">Welcome, {{ user.first_name }}!</div></div>
+        <div class="topText vcenter"></div>
         <form class="" action="{% url 'rl_reset' %}" method="post">{% csrf_token %}
           <input type='submit' value='Logout'>
         </form>
@@ -42,10 +42,7 @@
         <div class="hootButton"><a class="hootButton" href="http://52.42.19.183">HOOT</a></button>
       </div>
       <div class="boxFour" id="loaderText">
-        TEST CHANGE
-        <p>Main page with chat button, questions sidebar, saved/favorited bar, </p>
       </div>
-      <button id="test_button">TEST button</button><br>
       <div class="main_sidebar">
         <h4>ADD ADDITIONAL QUESTIONAIRE HERE</h4>
       </div>
@@ -70,7 +67,7 @@
         </div>
           {% endfor %}
         {% else %}
-        <div class="fav_user"><h2>You have not selected your favorite users, HOOT ON!</h2></div>
+        <div class="fav_user"><h2>You have not selected your favorite users. HOOT ON!</h2></div>
         {% endif %}
       </div>
     </div>
