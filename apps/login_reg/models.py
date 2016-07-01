@@ -57,17 +57,16 @@ class UserManager(models.Manager):
 				gender = kwargs['gender']
 				orientation = kwargs['orientation[]'] #returns a list
 				description = kwargs['description']
+				userID = kwargs['userID']
 				errors = {}
+
 				if first_name == "" or last_name == "" or alias == "":
 						errors['blank'] = "Please fill-in name, alias fields"
 				if len(first_name[0]) < 2:
-						print len(first_name[0])
 						errors['first_name'] = "First Name is too short"
 				if len(last_name[0]) < 2:
-						print last_name
 						errors['last_name'] = "Last Name is too short"
 				if len(alias[0]) < 2:
-						print alias
 						errors['alias'] = "Alias is too short"
 				#check if a gender is selected
 				if not gender:
@@ -89,13 +88,14 @@ class UserManager(models.Manager):
 				# 		"orientation": "",
 				# 		}
 				#todo: finish updating user
-				user = self.get(email=email)
-				user.update(first_name=first_name, last_name=last_name, alias=alias,
-						gender=gender, description = description )
+				uID = userID[0]
+				print uID
+				user = User.objects.get(id = uID)
+				User.objects.filter(id=uID).update(first_name=first_name[0], last_name=last_name[0], alias=alias[0], gender=gender[0], description = description[0] )
 				for gender_id in orientation:
 						gender = Gender.objects.get(id=gender_id)
 						user.orientation.add(gender)
-				return (True, self.get(email=email))
+				return (True, self.get(id=uID))
 
 class User(models.Model):
 		first_name = models.CharField(max_length=45)
