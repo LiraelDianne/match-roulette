@@ -28,7 +28,7 @@ h2 {
   text-align: left;
   margin-left: 20px;
   vertical-align: top;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 input {
@@ -175,7 +175,7 @@ form {
   background-image: url('../image/owl1.png');
   background-size: contain;
   display: inline-block;
-  margin-top: 10px;
+  margin-top: 5px;
   margin-left: 5px;
   border: 1px solid black;
 

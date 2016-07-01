@@ -51,14 +51,20 @@ class UserManager(models.Manager):
 				return (True, self.get(email=email))
 
 		def update(self, **kwargs):
+				errors = {}
 				first_name = kwargs['first_name']
 				last_name = kwargs['last_name']
 				alias = kwargs['alias']
 				gender = kwargs['gender']
-				orientation = kwargs['orientation[]'] #returns a list
+				try:
+					kwargs['orientation[]'] #returns a list
+					orientation = kwargs['orientation[]']
+					print orientation
+				except:
+					errors['orientation'] = "Please tell us who you're interested in!"
 				description = kwargs['description']
 				userID = kwargs['userID']
-				errors = {}
+
 
 				if first_name == "" or last_name == "" or alias == "":
 						errors['blank'] = "Please fill-in name, alias fields"
@@ -71,10 +77,6 @@ class UserManager(models.Manager):
 				#check if a gender is selected
 				if not gender:
 						errors['gender'] = "Please select a gender"
-				try: 
-					orientation
-				except:						
-					errors['orientation'] = "Please tell us who you're interested in!"
 				if errors:
 						return (False, errors)
 
@@ -94,7 +96,9 @@ class UserManager(models.Manager):
 				User.objects.filter(id=uID).update(first_name=first_name[0], last_name=last_name[0], alias=alias[0], gender=gender[0], description = description[0] )
 				for gender_id in orientation:
 						gender = Gender.objects.get(id=gender_id)
+						print gender
 						user.orientation.add(gender)
+						print user.orientation
 				return (True, self.get(id=uID))
 
 class User(models.Model):

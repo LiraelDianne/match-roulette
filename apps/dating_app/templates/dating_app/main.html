@@ -56,6 +56,8 @@
         <p class="profile_label">{{ user.first_name }} {{ user.last_name }} {{ user.gender.name }}</p>
         <h3 class="profile_label">Personal Description:</h3>
         <p class="profile_label">{{ user.description }} </p>
+        <p>{{ user.orientation }} </p>
+        <p>{{ user.favorite }}</p>
       </div>
       <div class="main_sidebar">
         {% if user.Favorites %}
