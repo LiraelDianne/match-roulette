@@ -65,16 +65,18 @@ def questionnaire_page(request, id):
 		return render (request, "dating_app/questions.html", context)
 
 def submit_questionnaire(request):
-		if request.method == "POST":
-				user = User.objects.get(id=request.session.id)
-				for i in range(1, 6):
-						question = Question.objects.get(id=i)
-						UserAnswer.objects.create(answerer=user, question=question,
-								answer=request.session[str(i)],
-								importance=request.session['importance'])
-				return redirect(reverse("da_home"))
+	if request.method == "POST":
+		user = User.objects.get(id=request.session['id'])
+		print request.POST
+		for i in range(1, 6):
+			importance='importance-'+str(i)
+			question = Question.objects.get(id=i)
+			UserAnswer.objects.create(answerer=user, question=question,
+				answer=request.POST[str(i)],
+				importance=request.POST[importance])
+		return redirect(reverse("da_home"))
 
-		return redirect(reverse("da_question"))
+	return redirect(reverse("da_question"))
 
 def find_match(request):
 
