@@ -11,19 +11,17 @@ from .matching import findMatch
 import copy
 from datetime import datetime
 
+import threading
+import logging
+logging.basicConfig(level=logging.DEBUG, format='%(message)s',)
 
 
 def home(request):
     context = {
         'user': User.objects.get(id=request.session['id']),
-        'people' : User.objects.all(),
+        'people' : User.objects.all()
     }
-
-    print context['user']
     return render(request, "dating_app/main.html", context)
-
-def bobtest(request):
-    return render(request, "dating_app/bobtest.html")
 
 def profilePage(request, id):
     #this page loads the profile information and then compiles the resulting page...
@@ -93,31 +91,46 @@ def find_match(request):
     # check for users
     if match:
     # if match found:
-        room = get_random_string(length=32)
-        request.session['room'] = room
-        match['room'] = room
-    # add a room name to each session
+        match['match'] = "found"
+        request.session['match'] = "found"
         match.save()
         #save the match session
+        return render(request, "dating_app/found.html")
+
     else:
         #mark them as active so they get sorted into the queue
         request.session['status'] = "active"
         #give them a timestamp
         request.session['queued'] = datetime.now()
-        #kick them out after five minutes
+        return redirect(reverse('da_waiting'))
 
+def Timeout():
+    timeout = True
 
-    return redirect(reverse('da_waiting'))
+def checkmatch(request):
+    #kick them out after five minutes
+    timeout = False
+    timer = threading.Timer(60*5, Timeout)
+    timer.start()
 
-def test_sesh(request):
-    sessions = Session.objects.all()
-    for session in sessions:
-        key = session.session_key
-        sesh = SessionStore(session_key=key)
-    sesh['room'] = 'newroom'
-    sesh.save()
-    print sesh
-    return render(request, 'test.html')
+    while not timeout:
+        if request.session['match'] == "found":
+            return render(request, "dating_app/found.html")
+    request.session['status'] = ""
+    request.session['match'] = "not found"
+
+    return render(request, "dating_app/main.html")
+
 
 def wait(request):
+    queue = threading.Thread(target=checkmatch, args=(request, ))
+
     return render(request, 'dating_app/wait.html')
+
+
+def foundmatch(request):
+    return render(request, 'dating_app/found.html')
+
+def end_match(request):
+    request.session['match'] = ""
+    return redirect(reverse("da_home"))
