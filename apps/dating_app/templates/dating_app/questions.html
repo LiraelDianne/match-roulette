@@ -4,18 +4,23 @@
   <meta charset="utf-8">
   <title></title>
   {% load staticfiles %}
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'css/da_styles.css' %}">
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+  <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'js/jquery-3.0.0.min.js' %}"></script>
   <script src="{% static 'js/main.js' %}"></script>
 </head>
 <body>
   <div class="wrapper">
-    <div class="topBar">
+    <div class="boxOne">
+      <div id="hoot_logo"><img src="{% static 'image/hootdate.jpg' %}"></div>
       <div class="topText"><div class="vcenter">Welcome, {{ user.first_name }}!</div></div>
-      <form class="" action="{% url 'rl_reset' %}" method="post">{% csrf_token %}
-        <input type='submit' value='Logout'>
+      <form class="" action="{% url 'rl_reset' %}" method="post">
+      {% csrf_token %}
+        <input class="head" type='submit' value='Logout'>
       </form>
-      {% if user.gender %}
-      <a href="{% url 'da_home'%}">Home</a>
+      {% if user.gender != 1 %}<div class="linkbuddy">
+      <a name='home-button' href="{% url 'da_home'%}">Home</a></div>
       {% endif %}
     </div>
     <fieldset>
