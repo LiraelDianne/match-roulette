@@ -96,6 +96,7 @@ class UserManager(models.Manager):
 				User.objects.filter(id=uID).update(first_name=first_name[0], last_name=last_name[0], alias=alias[0], gender=gender[0], description = description[0] )
 				for gender_id in orientation:
 						gender = Gender.objects.get(id=gender_id)
+						gender.save()
 						print gender
 						user.orientation.add(gender)
 						print user.orientation
