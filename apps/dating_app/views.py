@@ -42,19 +42,12 @@ def profilePage(request, id):
 def update_profile(request):
 		#submit form from profile page
 		if request.method == "POST":
-			print "8" * 50
-			print request.POST
 			user = User.userManager.update(**request.POST)
-			print user
-			print "9" *50
 			if user[0]:
-				request.session['errors']
+				request.session['error'] = {"blank" : "", "first_name" : "", "last_name" : "", "alias" : "", "gender": "", "orientation":""}
 				return redirect(reverse("da_home"))
 			else:
-				print "*" * 20
-				for i in user[1]:
-					messages.info( request, user[1][i])
-				 #return to home page, or updated profile page?
+				request.session['error'] = user[1]
 				return redirect(reverse("da_profile", kwargs= {'id':request.session['id']}))
 
 def loggedIn(request):
