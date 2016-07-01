@@ -21,7 +21,7 @@ class UserManager(models.Manager):
 		except:
 			return(False,{"login" : "login failed"})
 
-	def register(self, first_name, last_name, alias, email, password, confirm_password, birthday):
+	def register(self, first_name, last_name, alias, email, password, confirm_password):
 		errors = {}
 		if first_name == "" or last_name == "" or alias == "" or email == "" or password == "" or confirm_password == "":
 			errors['blank'] = "Please fill-in all fields"
@@ -46,7 +46,7 @@ class UserManager(models.Manager):
 		if errors:
 			return (False, errors)
 		password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-		self.create(first_name=first_name, last_name=last_name, alias=alias, password=password, email=email, birthday=birthday)
+		self.create(first_name=first_name, last_name=last_name, alias=alias, password=password, email=email)
 		errors = {"blank" : "", "email" : "", "first_name" : "", "last_name" : "", "alias" : "", "password" : "", "confirm_password" : "", "invalid" : ""}
 		return (True, self.get(email=email))
 
@@ -99,7 +99,6 @@ class User(models.Model):
 		alias = models.CharField(max_length=45)
 		email = models.EmailField() # auto validation for us!
 		password = models.CharField(max_length=255)
-		birthday = models.DateTimeField()
 		created_at = models.DateTimeField(auto_now_add=True)
 		updated_at = models.DateTimeField(auto_now=True)
 		userManager = UserManager()
