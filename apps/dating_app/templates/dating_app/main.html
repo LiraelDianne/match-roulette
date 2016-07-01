@@ -50,7 +50,7 @@
         <h2>Welcome! {{ user.alias }}</h2><br>
         <div class="user_avatar"></div>
         <h3 class="profile_label">Profile name:</h3>
-        <p class="profile_label">{{ user.first_name }} {{ user.last_name }} </p>
+        <p class="profile_label">{{ user.first_name }} {{ user.last_name }} {{ user.gender.name }}</p>
         <h3 class="profile_label">Personal Description:</h3>
         <p class="profile_label">{{ user.description }} </p>
       </div>

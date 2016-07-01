@@ -137,6 +137,10 @@ form {
 
 }
 
+.errors {
+  color: red;
+}
+
 #hoot_logo {
   vertical-align: top;
   display: inline-block;
