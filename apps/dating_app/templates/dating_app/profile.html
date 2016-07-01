@@ -51,11 +51,13 @@
               <select name='gender'>
                 <option disabled selected value></option>
               {% for gender in genders %}
-                  {% if user.gender.id == gender.id %}
-                  <option selected value="{{gender.id}}">{{gender.name}}</option>
-                  {% else %}
-                  <option value="{{gender.id}}">{{gender.name}}</option>
-                {% endif %}
+                  {% if gender.id != 1 %}
+                    {% if user.gender.id == gender.id %}
+                    <option selected value="{{gender.id}}">{{gender.name}}</option>
+                    {% else %}
+                    <option value="{{gender.id}}">{{gender.name}}</option>
+                    {% endif %}
+                  {% endif %}
               {% endfor %}
               </select>
               <br>
