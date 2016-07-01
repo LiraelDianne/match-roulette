@@ -24,9 +24,6 @@
   </head>
   <body>
     <div class="wrapper">
-      <div class='testsession'>
-        <a name='test' href="{% url 'testsesh' %}">Test</a>
-      </div>
       <div class="boxOne">
         <div id="hoot_logo"><img src="{% static 'image/hootdate.jpg' %}"></div>
         <div class="topText"><div class="vcenter">Welcome, {{ user.first_name }}!</div></div>
@@ -42,7 +39,7 @@
       <div class="boxTwo">
       </div>
       <div class="boxThree">
-        <div class="hootButton"><a class="hootButton" href="{% url 'da_hoot' %}">HOOT</a></button>
+        <div class="hootButton"><a class="hootButton" href="http://52.42.19.183">HOOT</a></button>
       </div>
       <div class="boxFour" id="loaderText">
         TEST CHANGE
@@ -68,7 +65,7 @@
             <h3>{{ person.alias}}</h3> <!-- favorite user alias here -->
             <h5>{{ person.first_name }} {{ person.last_name }}</h5>
             <p>{{ person.description}}</p>
-          </div> 
+          </div>
           <div class="avatar"></div>
         </div>
           {% endfor %}
